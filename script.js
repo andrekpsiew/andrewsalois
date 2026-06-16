@@ -1,4 +1,4 @@
-const WORKER_URL = 'https://your-worker-name.your-subdomain.workers.dev';
+const WORKER_URL = 'https://love-counter.andrewsalois09.workers.dev/';
 
 const imageButton = document.querySelector('.image-button');
 const displayElement = document.getElementById("showsOfLoveCounter");
