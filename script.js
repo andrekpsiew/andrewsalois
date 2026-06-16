@@ -1,30 +1,19 @@
-const fs = require('fs').promises;
-const FILE_NAME = 'data.json';
-
-function saveVariable(key, value) {
-  let data = {};
-
-  if (fs.existsSync(FILE))
-  {
-    data = JSON.parse(fs.readFileSync(FILE, 'utf8'));
-  }
-  data[key] = value;
-  fs.writeFileSync(FILE, JSON.stringify(data));
-}
-
-function getVariable(key) {
-  if (!fs.existsSync(FILE)) return undefined;
-  const data = JSON.parse(fs.readFileSync(FILE, 'utf8'));
-  return data[key];
-}
-
+const WORKER_URL = 'https://your-worker-name.your-subdomain.workers.dev';
 
 const imageButton = document.querySelector('.image-button');
 const displayElement = document.getElementById("showsOfLoveCounter");
 
-
-function handleButtonClick() {
-    saveVariable("showsOfLove", getVariable("showsOfLove") + 1);
-    displayElement.textContent = getVariable("showsOfLove");
+async function loadCount() {
+  const res = await fetch(WORKER_URL);
+  const data = await res.json();
+  displayElement.textContent = data.count;
 }
+
+async function handleButtonClick() {
+  const res = await fetch(WORKER_URL, { method: 'POST' });
+  const data = await res.json();
+  displayElement.textContent = data.count;
+}
+
 imageButton.addEventListener('click', handleButtonClick);
+loadCount();
