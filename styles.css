@@ -1,0 +1,11 @@
+.image-button {
+  background: none;    /* Removes standard background */
+  border: none;        /* Removes default border border */
+  padding: 0;          /* Removes inner padding */
+  cursor: pointer;     /* Changes cursor to a hand on hover */
+}
+
+.image-button img {
+  width: 50px;         /* Explicitly sets the button width */
+  height: auto;        /* Maintains image aspect ratio */
+}
